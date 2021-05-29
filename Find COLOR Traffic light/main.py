@@ -35,4 +35,7 @@ green_final = func.draw_bbox(GREEN,bbox_green,colorname_green)
 yellow_final = func.draw_bbox(YELLOW,bbox_yellow,colorname_yellow)
 
 final_img = np.hstack((red_final,green_final,yellow_final))
+final_img = cv2.cvtColor(final_img,cv2.COLOR_RGB2BGR)
+
+cv2.imwrite('final_img.jpg',final_img)
 show(final_img)
