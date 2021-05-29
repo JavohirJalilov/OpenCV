@@ -73,3 +73,10 @@ def bbox_img(img_mask):
     start_point = (x,y)
     end_point = (x+w,y+h)
     return start_point,end_point
+
+def draw_bbox(img,bbox,colorname):
+    start_point,end_point = bbox
+
+    rect_img = cv2.rectangle(img,start_point,end_point,color=(255,0,0),thickness=5)
+    cv2.putText(rect_img,colorname,(start_point[0],start_point[1]-10),5,2.0,color=(255,0,0),thickness=2)
+    return rect_img
