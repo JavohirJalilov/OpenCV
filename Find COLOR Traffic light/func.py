@@ -26,17 +26,27 @@ def get_img(name):
     return gray,img
 
 def get_mask(img):
-  mask = np.zeros(img.shape,dtype=np.uint8)
-  mask = cv2.rectangle(mask,(180,180),(600,1400),color=(255,255,255),thickness=-1)
-  return mask
+    mask = np.zeros(img.shape,dtype=np.uint8)
+    mask = cv2.rectangle(mask,(180,180),(600,1400),color=(255,255,255),thickness=-1)
+    return mask
 
 def get_ROI(img,mask):
-  ROI_img = cv2.bitwise_and(img,mask)
-  ROI_img = cv2.cvtColor(ROI_img,cv2.COLOR_RGB2GRAY)
-  return ROI_img
+    ROI_img = cv2.bitwise_and(img,mask)
+    ROI_img = cv2.cvtColor(ROI_img,cv2.COLOR_RGB2GRAY)
+    return ROI_img
 
 def filters_img(ROI_img,start_color,stop_color,kernal):
-  img = cv2.inRange(ROI_img,start_color,stop_color)
-  opening = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernal(20,20))
-  dilation = cv2.dilate(opening,kernal(18,18))
-  return dilation
+    img = cv2.inRange(ROI_img,start_color,stop_color)
+    opening = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernal(20,20))
+    dilation = cv2.dilate(opening,kernal(18,18))
+    return dilation
+
+def kernal(x,y):
+    k = np.ones((x,y),dtype=np.uint8)
+    return k
+
+def filters_img(ROI_img,start_color,stop_color,kernal):
+    img = cv2.inRange(ROI_img,start_color,stop_color)
+    opening = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernal(20,20))
+    dilation = cv2.dilate(opening,kernal(18,18))
+    return dilation
