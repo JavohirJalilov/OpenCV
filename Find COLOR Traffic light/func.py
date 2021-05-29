@@ -35,12 +35,6 @@ def get_ROI(img,mask):
     ROI_img = cv2.cvtColor(ROI_img,cv2.COLOR_RGB2GRAY)
     return ROI_img
 
-def filters_img(ROI_img,start_color,stop_color,kernal):
-    img = cv2.inRange(ROI_img,start_color,stop_color)
-    opening = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernal(20,20))
-    dilation = cv2.dilate(opening,kernal(18,18))
-    return dilation
-
 def kernal(x,y):
     k = np.ones((x,y),dtype=np.uint8)
     return k
