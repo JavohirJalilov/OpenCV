@@ -20,4 +20,19 @@ red_filter = func.filters_img(red_ROI,87,140,func.kernal)
 green_filter = func.filters_img(green_ROI,120,255,func.kernal)
 yellow_filter = func.filters_img(yellow_ROI,120,255,func.kernal)
 
-show(red_filter)
+
+colorname_red = func.find_color(red_filter)
+bbox_red = func.bbox_img(red_filter)
+
+colorname_green = func.find_color(green_filter)
+bbox_green = func.bbox_img(green_filter)
+
+colorname_yellow = func.find_color(yellow_filter)
+bbox_yellow = func.bbox_img(yellow_filter)
+
+red_final = func.draw_bbox(RED,bbox_red,colorname_red)
+green_final = func.draw_bbox(GREEN,bbox_green,colorname_green)
+yellow_final = func.draw_bbox(YELLOW,bbox_yellow,colorname_yellow)
+
+final_img = np.hstack((red_final,green_final,yellow_final))
+show(final_img)
