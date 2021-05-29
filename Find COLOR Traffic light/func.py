@@ -13,3 +13,14 @@ def show(img,s=8,b=False):
     plt.grid(alpha=.2)
     plt.grid(b)
     plt.show()
+
+def get_img(name):
+    '''
+    name: image name
+    return: grayscale image
+    '''
+    img = cv2.imread(name)
+    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    img = cv2.blur(img,(12,12))
+    gray = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+    return gray,img
